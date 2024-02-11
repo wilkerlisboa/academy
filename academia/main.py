@@ -27,12 +27,12 @@ class ContadorApp(MDApp):
 
         self.botao_iniciar = Button(text="Iniciar Contagem", on_press=self.iniciar_contagem,
                                     font_size=dp(14), background_color=self.theme_cls.primary_color,
-                                    size_hint_x=None, width=dp(450))  # Ajuste a largura aqui
+                                    size_hint_x=None, width=dp(650))  # Ajuste a largura aqui
         layout.add_widget(self.botao_iniciar)
 
         self.botao_parar = Button(text="Parar Contagem", on_press=self.parar_contagem, state='normal',
                                   font_size=dp(14), background_color=self.theme_cls.accent_color,
-                                  size_hint_x=None, width=dp(450))  # Ajuste a largura aqui
+                                  size_hint_x=None, width=dp(650))  # Ajuste a largura aqui
         layout.add_widget(self.botao_parar)
 
         return layout
