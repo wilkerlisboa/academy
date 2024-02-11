@@ -1,3 +1,3 @@
-# academy
+# Contador Fit
 
-##teste
+<p> e um app que foi criado para auxiliar na contagem de execução de execicios
