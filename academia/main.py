@@ -7,7 +7,7 @@ from kivy.metrics import dp
 from kivymd.app import MDApp
 from kivymd.uix.progressbar import MDProgressBar
 
-class ContadorApp(MDApp):
+class ContadorFit(MDApp):
     def build(self):
         self.numero_repeticoes = 3
         self.numero_maximo = 12
@@ -35,6 +35,9 @@ class ContadorApp(MDApp):
                                   size_hint_x=None, width=dp(650))  # Ajuste a largura aqui
         layout.add_widget(self.botao_parar)
 
+        # Variável para rastrear se a contagem deve ser parada
+        self.parar_contagem_flag = False
+
         return layout
 
     def iniciar_contagem(self, instance):
@@ -44,6 +47,10 @@ class ContadorApp(MDApp):
         self.contagem(1)
 
     def contagem(self, numero):
+        if self.parar_contagem_flag:
+            # Se a flag for definida como True, pare a contagem
+            return
+
         if self.contagem_atual <= self.numero_repeticoes:
             if numero <= self.numero_maximo:
                 self.label.text = str(numero)
@@ -65,13 +72,16 @@ class ContadorApp(MDApp):
 
     def resetar_contagem(self, dt):
         self.label.text = ""
-        self.contagem(1)
+        # Reinicia a contagem apenas se a flag for False
+        if not self.parar_contagem_flag:
+            self.contagem(1)
 
     def parar_contagem(self, instance):
         self.label.text = "Contagem Interrompida"
         self.botao_iniciar.disabled = False
         self.botao_parar.disabled = True
-
+        # Define a flag como True para indicar que a contagem deve ser parada
+        self.parar_contagem_flag = True
 
 if __name__ == "__main__":
-    ContadorApp().run()
+    ContadorFit().run()
